@@ -8,7 +8,7 @@ RUN yum install -y epel-release && yum install -y \
     \
     deltarpm \
     \
-    less \
+    less man-db \
     openssh-clients rsync \
     wget curl nettle \
     bzip2 pbzip2 \

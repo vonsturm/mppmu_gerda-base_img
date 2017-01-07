@@ -6,7 +6,7 @@ WORKDIR /root
 RUN apt-get update && apt-get install -y \
     \
     lsb-release \
-    less \
+    less man-db \
     openssh-client rsync \
     wget curl ca-certificates \
     pbzip2 \

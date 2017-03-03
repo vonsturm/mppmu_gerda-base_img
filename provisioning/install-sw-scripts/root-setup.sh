@@ -2,6 +2,7 @@
 #
 # Copyright (c) 2016: Oliver Schulz.
 
+
 pkg_install() {
     DOWNLOAD_URL=""
     if [ "${LINUX_DIST_BINCOMPAT}" = "ubuntu-14.04" ] ; then
@@ -23,10 +24,11 @@ pkg_install() {
         | tar --strip-components=1 -x -z -f - -C "${INSTALL_PREFIX}"
 }
 
+
 pkg_env_vars() {
 cat <<-EOF
 PATH="${INSTALL_PREFIX}/bin:\$PATH"
-LD_LIBRARY_PATH="${INSTALL_PREFIX}/lib:/usr/local/lib:\$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="${INSTALL_PREFIX}/lib:\$LD_LIBRARY_PATH"
 MANPATH="${INSTALL_PREFIX}/man:\$MANPATH"
 PYTHONPATH="${INSTALL_PREFIX}/lib:\$PYTHONPATH"
 CMAKE_PREFIX_PATH="${INSTALL_PREFIX};\$CMAKE_PREFIX_PATH"

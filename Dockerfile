@@ -9,8 +9,6 @@ WORKDIR /root
 
 # Install yum/RPM packages:
 
-COPY provisioning/wandisco-centos7-git.repo /etc/yum.repos.d/wandisco-git.repo
-
 RUN true \
     && sed -i '/tsflags=nodocs/d' /etc/yum.conf \
     && yum install -y \

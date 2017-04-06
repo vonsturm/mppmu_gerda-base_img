@@ -21,7 +21,7 @@ RUN true \
         cmake \
         p7zip pbzip2 \
         nano vim \
-        git git-gui gitk \
+        git git-gui gitk svn \
     && dbus-uuidgen > /etc/machine-id
 
 

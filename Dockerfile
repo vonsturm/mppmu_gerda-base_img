@@ -95,7 +95,8 @@ RUN true \
 RUN true \
     && yum install -y python-pip python-setuptools python-devel \
     && pip install --upgrade pip \
-    && pip install jupyter metakernel
+    && pip install jupyter \
+    && pip install metakernel
 
 EXPOSE 8888
 

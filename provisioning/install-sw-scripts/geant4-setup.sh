@@ -18,7 +18,7 @@ ADDITIONAL_BUILD_OPTS="\
 -DGEANT4_INSTALL_DATA=ON \
 -DGEANT4_INSTALL_EXAMPLES=ON \
 -DGEANT4_USE_SYSTEM_EXPAT=ON \
--DGEANT4_USE_SYSTEM_ZLIB=ON \
+-DGEANT4_USE_SYSTEM_ZLIB=OFF \
 "
 
 CLHEP_PREFIX=`(clhep-config --prefix | sed 's/\"//g') 2> /dev/null`
@@ -43,7 +43,7 @@ download_url() {
     && local PKG_VERSION_PATCH=$(seq -f "%02g" "${PKG_VERSION_PATCH}" "${PKG_VERSION_PATCH}") \
     && local PKG_VERSION_DNL="${PKG_VERSION_MAJOR}.${PKG_VERSION_MINOR}" \
     && local PKG_VERSION_DNL=$(test "${PKG_VERSION_PATCH}" -ne 0 && echo "${PKG_VERSION_DNL}.p${PKG_VERSION_PATCH}" || echo "${PKG_VERSION_DNL}") \
-    && echo "http://geant4.cern.ch/support/source/geant4.${PKG_VERSION_DNL}.tar.gz"
+    && echo "https://geant4-data.web.cern.ch/releases/geant4.${PKG_VERSION_DNL}.tar.gz"
 }
 
 

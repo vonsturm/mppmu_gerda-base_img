@@ -19,7 +19,7 @@ RUN true \
         \
         wget \
         cmake \
-        p7zip pbzip2 \
+        p7zip \
         nano vim \
         git git-gui gitk svn \
     && dbus-uuidgen > /etc/machine-id
@@ -112,6 +112,10 @@ RUN true \
 
 RUN yum install -y \
         numactl \
+        pbzip2 zstd libzstd-devel \
+        \
+        xorg-x11-server-utils mesa-dri-drivers glx-utils \
+        xdg-utils \
         \
         http://linuxsoft.cern.ch/cern/centos/7/cern/x86_64/Packages/parallel-20150522-1.el7.cern.noarch.rpm \
     && yum clean all

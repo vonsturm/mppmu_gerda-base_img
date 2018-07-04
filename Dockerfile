@@ -112,6 +112,14 @@ RUN true \
     && pip install arrow enum34 luigi subprocess32
 
 
+# Install support for graphical applications:
+
+RUN yum install -y \
+    xorg-x11-server-utils mesa-dri-drivers glx-utils \
+    xdg-utils \
+    xorg-x11-server-Xvfb
+
+
 # Install additional packages and clean up:
 
 RUN yum install -y \

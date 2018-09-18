@@ -3,7 +3,7 @@
 # Copyright (c) 2016: Oliver Schulz.
 
 
-DEFAULT_BUILD_OPTS=""
+DEFAULT_BUILD_OPTS="-std=c++11"
 
 
 pkg_install() {

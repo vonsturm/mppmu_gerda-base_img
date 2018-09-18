@@ -7,6 +7,7 @@ BASIC_BUILD_OPTS="\
 --fail-on-missing \
 --enable-shared \
 --enable-soversion \
+-DGEANT4_BUILD_CXXSTD=c++11 \
 "
 
 ADDITIONAL_BUILD_OPTS="\

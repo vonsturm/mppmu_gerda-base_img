@@ -65,7 +65,7 @@ RUN true \
     && yum install -y \
         expat-devel xerces-c-devel zlib-devel \
         libXmu-devel libXi-devel \
-        mesa-libGLU-devel motif-devel mesa-libGLw qt-devel \
+        mesa-libGLU-devel motif-devel mesa-libGLw qt-devel qt5-qtbase-gui \
     && provisioning/install-sw.sh clhep 2.3.4.4 /opt/clhep \
     && provisioning/install-sw.sh geant4 10.4.2 /opt/geant4
 
@@ -88,6 +88,7 @@ RUN true \
     && yum install -y \
         libSM-devel \
         libX11-devel libXext-devel libXft-devel libXpm-devel \
+        libXdmcp libXtst libxkbfile libXScrnSaver libXss.so.1 \
         libjpeg-devel libpng-devel \
         mesa-libGLU-devel \
     && provisioning/install-sw.sh root 6.14.04 /opt/root
@@ -120,11 +121,21 @@ RUN yum install -y \
     xorg-x11-server-Xvfb
 
 
+# Install ImageMagick:
+
+# Somehow prevents occasional problems with font in Geant4.
+RUN yum install -y ImageMagick
+
+
 # Install additional packages and clean up:
 
 RUN yum install -y \
         numactl \
         pbzip2 zstd libzstd-devel \
+        \
+        lsb-core-noarch \
+        \
+        levien-inconsolata-fonts dejavu-sans-fonts \
         \
         xorg-x11-server-utils mesa-dri-drivers glx-utils \
         xdg-utils \

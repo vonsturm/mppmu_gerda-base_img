@@ -12,7 +12,7 @@ pkg_install() {
     elif [ "${LINUX_DIST_BINCOMPAT}" = "rhel-6" ] ; then
         DOWNLOAD_URL="https://root.cern.ch/download/root_v${PACKAGE_VERSION}.Linux-slc6-x86_64-gcc4.4.tar.gz"
     elif [ "${LINUX_DIST_BINCOMPAT}" = "rhel-7" ] ; then
-        DOWNLOAD_URL="https://root.cern.ch/download/root_v${PACKAGE_VERSION}.Linux-centos7-x86_64-gcc4.8.tar.gz"
+        DOWNLOAD_URL="https://root.cern.ch/download/root_v${PACKAGE_VERSION}.Linux-cc7-x86_64-gcc4.8.tar.gz"
     else
         echo "ERROR: Unsupported Linux distribution (binary compatible) \"${LINUX_DIST_BINCOMPAT}\"".
         exit 1

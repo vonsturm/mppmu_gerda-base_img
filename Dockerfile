@@ -110,7 +110,7 @@ EXPOSE 8888
 RUN true \
     && yum install -y \
         readline-devel fftw-devel \
-    && pip install arrow enum34 luigi subprocess32
+    && pip install arrow enum34 subprocess32 python-dateutil==2.7.5 luigi==2.8.3
 
 
 # Install support for graphical applications:

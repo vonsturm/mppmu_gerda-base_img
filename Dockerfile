@@ -91,7 +91,7 @@ RUN true \
         libXdmcp libXtst libxkbfile libXScrnSaver libXss.so.1 \
         libjpeg-devel libpng-devel \
         mesa-libGLU-devel \
-    && provisioning/install-sw.sh root 6.14.04 /opt/root
+    && provisioning/install-sw.sh root 6.06.08 /opt/root
 
 
 # Install Jupyter:

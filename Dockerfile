@@ -20,7 +20,7 @@ RUN true \
         wget \
         cmake \
         p7zip \
-        nano vim \
+        nano vim zsh \
         git git-gui gitk svn \
     && dbus-uuidgen > /etc/machine-id
 

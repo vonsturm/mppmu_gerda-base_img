@@ -1,11 +1,18 @@
 FROM centos:7
 
-
 # User and workdir settings:
 
 USER root
 WORKDIR /root
 
+RUN yum update -y
+RUN yum install -y centos-release-scl
+RUN yum install -y devtoolset-9
+
+RUN echo "source /opt/rh/devtoolset-9/enable" >> /etc/bashrc
+
+SHELL ["/bin/bash", "--login", "-c"]
+RUN gcc --version
 
 # Install yum/RPM packages:
 
@@ -38,7 +45,7 @@ ENV \
     PATH="/opt/cmake/bin:$PATH" \
     MANPATH="/opt/cmake/share/man:$MANPATH"
 
-RUN provisioning/install-sw.sh cmake 3.5.1 /opt/cmake
+RUN provisioning/install-sw.sh cmake 3.9.0 /opt/cmake
 
 
 # Install CLHep and Geant4:
@@ -48,16 +55,16 @@ COPY provisioning/install-sw-scripts/clhep-* provisioning/install-sw-scripts/gea
 ENV \
     PATH="/opt/geant4/bin:/opt/clhep/bin:$PATH" \
     LD_LIBRARY_PATH="/opt/geant4/lib64:/opt/clhep/lib:$LD_LIBRARY_PATH" \
-    G4LEDATA="/opt/geant4/share/Geant4-10.4.3/data/G4EMLOW7.3" \
-    G4LEVELGAMMADATA="/opt/geant4/share/Geant4-10.4.3/data/PhotonEvaporation5.2" \
-    G4NEUTRONHPDATA="/opt/geant4/share/Geant4-10.4.3/data/G4NDL4.5" \
-    G4NEUTRONXSDATA="/opt/geant4/share/Geant4-10.4.3/data/G4NEUTRONXS1.4" \
-    G4PIIDATA="/opt/geant4/share/Geant4-10.4.3/data/G4PII1.3" \
-    G4RADIOACTIVEDATA="/opt/geant4/share/Geant4-10.4.3/data/RadioactiveDecay5.2" \
-    G4REALSURFACEDATA="/opt/geant4/share/Geant4-10.4.3/data/RealSurface2.1.1" \
-    G4SAIDXSDATA="/opt/geant4/share/Geant4-10.4.3/data/G4SAIDDATA1.1" \
-    G4ENSDFSTATEDATA="/opt/geant4/share/Geant4-10.4.3/data/G4ENSDFSTATE2.2" \
-    G4ABLADATA="/opt/geant4/share/Geant4-10.4.3/data/G4ABLA3.1" \
+    G4NEUTRONHPDATA="/opt/geant4/share/Geant4-10.6.3/data/G4NDL4.6" \
+    G4LEDATA="/opt/geant4/share/Geant4-10.6.3/data/G4EMLOW7.9.1" \
+    G4LEVELGAMMADATA="/opt/geant4/share/Geant4-10.6.3/data/PhotonEvaporation5.5" \
+    G4RADIOACTIVEDATA="/opt/geant4/share/Geant4-10.6.3/data/RadioactiveDecay5.4" \
+    G4SAIDXSDATA="/opt/geant4/share/Geant4-10.6.3/data/G4SAIDDATA2.0" \
+    G4ABLADATA="/opt/geant4/share/Geant4-10.6.3/data/G4ABLA3.1" \
+    G4PIIDATA="/opt/geant4/share/Geant4-10.6.3/data/G4PII1.3" \
+    G4ENSDFSTATEDATA="/opt/geant4/share/Geant4-10.6.3/data/G4ENSDFSTATE2.2" \
+    G4REALSURFACEDATA="/opt/geant4/share/Geant4-10.6.3/data/RealSurface2.1.1" \
+    G4PARTICLEXSDATA="/opt/geant4/share/Geant4-10.6.3/data/G4PARTICLEXS2.1" \
     AllowForHeavyElements=1
 
 
@@ -66,8 +73,8 @@ RUN true \
         expat-devel xerces-c-devel zlib-devel \
         libXmu-devel libXi-devel \
         mesa-libGLU-devel motif-devel mesa-libGLw qt-devel qt5-qtbase-gui \
-    && provisioning/install-sw.sh clhep 2.3.4.4 /opt/clhep \
-    && provisioning/install-sw.sh geant4 10.4.3 /opt/geant4
+    && provisioning/install-sw.sh clhep 2.4.1.3 /opt/clhep \
+    && provisioning/install-sw.sh geant4 10.6.3 /opt/geant4
 
 
 # Install CERN ROOT:
@@ -97,10 +104,10 @@ RUN true \
 # Install Jupyter:
 
 RUN true \
-    && yum install -y python-pip python-setuptools python-devel \
-    && pip install --upgrade pip \
-    && pip install jupyter \
-    && pip install jupyterlab metakernel
+    && yum install -y python3-pip python3-setuptools python3-devel \
+    && pip3 install --upgrade pip \
+    && pip3 install jupyter \
+    && pip3 install jupyterlab metakernel
 
 EXPOSE 8888
 
@@ -110,7 +117,8 @@ EXPOSE 8888
 RUN true \
     && yum install -y \
         readline-devel fftw-devel \
-    && pip install arrow enum34 subprocess32 python-dateutil==2.7.5 luigi==2.8.3
+    && pip3 install arrow enum34 subprocess32 wheel \
+    && pip3 install python-dateutil==2.7.5 luigi==2.8.3
 
 
 # Install support for graphical applications:
